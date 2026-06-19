@@ -1,4 +1,4 @@
-# Stage 1: Build assets using Node.js
+# Stage 1: Build frontend assets using Node.js
 FROM node:20-alpine AS asset-builder
 WORKDIR /app
 COPY package*.json ./
@@ -57,3 +57,16 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Set permissions for storage and bootstrap/cache
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Create startup script that configures Apache to listen on Render's $PORT
+RUN echo '#!/bin/bash\n\
+sed -i "s/80/${PORT:-10000}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf\n\
+php artisan config:cache\n\
+php artisan route:cache\n\
+php artisan view:cache\n\
+php artisan storage:link 2>/dev/null || true\n\
+apache2-foreground' > /usr/local/bin/start.sh && chmod +x /usr/local/bin/start.sh
+
+EXPOSE 10000
+
+CMD ["/usr/local/bin/start.sh"]
