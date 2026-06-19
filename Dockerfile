@@ -12,8 +12,11 @@ FROM php:8.2-apache
 # Install OS dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
     zip \
     unzip \
     git \
@@ -23,7 +26,8 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip xml
 
 # Configure Apache DocumentRoot to point to /public
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
@@ -44,6 +48,9 @@ COPY . /var/www/html
 
 # Copy compiled assets from Stage 1
 COPY --from=asset-builder /app/public/build /var/www/html/public/build
+
+# Create .env for artisan commands during build
+RUN cp .env.example .env
 
 # Install dependencies (production settings)
 RUN composer install --no-dev --optimize-autoloader
