@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --vc-primary: #ffb59e;
+        --vc-primary-container: #e1704b;
+        --vc-on-primary-container: #521300;
+        --vc-surface: #1b110e;
+        --vc-surface-lowest: #150c09;
+        --vc-surface-low: #231916;
+        --vc-surface-container: #281d1a;
+        --vc-surface-high: #332724;
+        --vc-surface-highest: #3e322f;
+        --vc-on-surface: #f2ded9;
+        --vc-on-surface-variant: #ddc0b8;
+        --vc-outline: #a58b84;
+        --vc-outline-variant: #56423c;
+        --vc-secondary: #bbcbb1;
+        --vc-tertiary: #67d7da;
+        --vc-error: #ffb4ab;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--vc-surface);
+        color: var(--vc-on-surface);
+        font-family: "Hanken Grotesk", sans-serif;
+        letter-spacing: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .font-display-lg,
+    .font-headline-lg,
+    .font-headline-md {
+        font-family: "EB Garamond", serif;
+        font-weight: 400;
+        letter-spacing: 0;
+    }
+
+    a {
+        color: var(--vc-primary);
+    }
+
+    a:hover {
+        color: var(--vc-tertiary);
+    }
+}
+
+@layer components {
+    .vc-container {
+        width: 100%;
+        max-width: 1280px;
+        margin-inline: auto;
+        padding-inline: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .vc-container {
+            padding-inline: 64px;
+        }
+    }
+
+    .glass-panel {
+        background: rgba(26, 26, 26, 0.7);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(245, 245, 245, 0.05);
+    }
+
+    .text-shadow {
+        text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .lookbook-scroll::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .lookbook-scroll::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lookbook-scroll::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+    }
+
+    .vc-section {
+        padding-block: 6rem;
+    }
+
+    @media (min-width: 768px) {
+        .vc-section {
+            padding-block: 8rem;
+        }
+    }
+
+    .vc-kicker {
+        color: var(--vc-primary);
+        font-size: 0.875rem;
+        line-height: 1.4;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+    }
+
+    .vc-heading {
+        color: var(--vc-on-surface);
+        font-family: "EB Garamond", serif;
+        font-size: clamp(2rem, 6vw, 4rem);
+        line-height: 1.1;
+        font-weight: 400;
+    }
+
+    .vc-body {
+        color: var(--vc-on-surface-variant);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .vc-btn,
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        border: 1px solid var(--vc-primary-container) !important;
+        border-radius: 0.125rem !important;
+        background: var(--vc-primary-container) !important;
+        color: var(--vc-on-primary-container) !important;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.8rem 1.25rem;
+        transition: color 200ms ease, background 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+
+    .vc-btn:hover,
+    .btn-primary:hover {
+        background: var(--vc-primary) !important;
+        border-color: var(--vc-primary) !important;
+        color: var(--vc-on-primary-container) !important;
+    }
+
+    .vc-btn .material-symbols-outlined,
+    .btn-primary .material-symbols-outlined {
+        transition: transform 200ms ease;
+    }
+
+    .vc-btn:hover .material-symbols-outlined,
+    .btn-primary:hover .material-symbols-outlined {
+        transform: translateX(0.25rem);
+    }
+
+    .btn-outline-primary,
+    .btn-outline-secondary,
+    .btn-light {
+        border-color: rgba(242, 222, 217, 0.22) !important;
+        border-radius: 0.125rem !important;
+        color: var(--vc-on-surface) !important;
+        background: transparent !important;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+
+    .btn-outline-primary:hover,
+    .btn-outline-secondary:hover,
+    .btn-light:hover {
+        border-color: var(--vc-primary) !important;
+        background: rgba(255, 181, 158, 0.12) !important;
+        color: var(--vc-primary) !important;
+    }
+
+    .card {
+        background: var(--vc-surface-container) !important;
+        color: var(--vc-on-surface);
+        border: 1px solid rgba(242, 222, 217, 0.08) !important;
+        border-radius: 0.25rem !important;
+        box-shadow: none !important;
+    }
+
+    .card-header,
+    .card-footer,
+    .table-light {
+        background: var(--vc-surface-low) !important;
+        color: var(--vc-on-surface) !important;
+        border-color: rgba(242, 222, 217, 0.08) !important;
+    }
+
+    .form-control,
+    .form-select {
+        background-color: var(--vc-surface-lowest) !important;
+        color: var(--vc-on-surface) !important;
+        border: 1px solid var(--vc-outline-variant) !important;
+        border-radius: 0.125rem !important;
+    }
+
+    .form-control::placeholder {
+        color: rgba(221, 192, 184, 0.55);
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: var(--vc-primary) !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 181, 158, 0.12) !important;
+    }
+
+    .form-label,
+    label {
+        color: var(--vc-on-surface-variant);
+        font-size: 0.875rem;
+        letter-spacing: 0.05em;
+    }
+
+    .table {
+        --bs-table-bg: transparent;
+        --bs-table-color: var(--vc-on-surface);
+        --bs-table-border-color: rgba(242, 222, 217, 0.08);
+        color: var(--vc-on-surface) !important;
+    }
+
+    .text-muted,
+    .breadcrumb-item,
+    .breadcrumb-item.active {
+        color: var(--vc-on-surface-variant) !important;
+    }
+
+    .text-primary {
+        color: var(--vc-primary) !important;
+    }
+
+    .bg-primary,
+    .badge.bg-primary {
+        background-color: var(--vc-primary-container) !important;
+        color: var(--vc-on-primary-container) !important;
+    }
+
+    .badge.bg-secondary,
+    .badge.bg-info,
+    .badge.bg-success,
+    .badge.bg-warning {
+        border-radius: 0.125rem;
+    }
+
+    .alert {
+        border-radius: 0.25rem;
+        border-color: rgba(242, 222, 217, 0.12);
+        background: var(--vc-surface-container-high);
+        color: var(--vc-on-surface);
+    }
+
+    .product-card {
+        overflow: hidden;
+    }
+
+    .product-card .card-img-top {
+        height: 260px;
+        object-fit: cover;
+        filter: brightness(0.78) contrast(1.08);
+        transition: transform 700ms ease, filter 700ms ease;
+    }
+
+    .product-card:hover .card-img-top {
+        transform: scale(1.04);
+        filter: brightness(0.9) contrast(1.08);
+    }
+}
