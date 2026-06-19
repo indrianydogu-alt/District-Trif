@@ -1,0 +1,15 @@
+.git
+.env
+.env.backup
+.env.production
+node_modules
+vendor
+bootstrap/cache/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+phpunit.xml
+.phpunit.result.cache
+ecommerce_db.sql
+render_aiven_deployment_guide.md
